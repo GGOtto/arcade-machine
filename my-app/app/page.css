@@ -12,14 +12,3 @@
 body {
     background-color: white;
 }
-
-.game-type-container {
-    color: black;
-    font-weight: 600;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-}
-
-.game-type-container:hover {
-    background-color: lightblue;
-}

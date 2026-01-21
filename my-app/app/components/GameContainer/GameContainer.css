@@ -1,0 +1,10 @@
+.game-container {
+    color: black;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.game-container:hover {
+    background-color: lightblue;
+}
