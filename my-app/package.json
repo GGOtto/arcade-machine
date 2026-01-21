@@ -7,13 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "preview": "wrangler pages preview",
-    "deploy": "next build && wrangler pages deploy .next"
+    "preview": "npm run build && npx wrangler pages dev out",
+    "deploy": "next build && wrangler pages deploy out"
   },
   "dependencies": {
+    "22": "^0.0.0",
     "next": "16.1.1",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "sass": "^1.97.2"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
