@@ -3529,13 +3529,13 @@
       "imports": [],
       "format": "cjs"
     },
-    ".open-next/server-functions/default/.next/server/app/_not-found/page_client-reference-manifest.js": {
-      "bytes": 6058,
+    ".open-next/server-functions/default/.next/server/app/_global-error/page_client-reference-manifest.js": {
+      "bytes": 5948,
       "imports": [],
       "format": "cjs"
     },
-    ".open-next/server-functions/default/.next/server/app/_global-error/page_client-reference-manifest.js": {
-      "bytes": 5948,
+    ".open-next/server-functions/default/.next/server/app/_not-found/page_client-reference-manifest.js": {
+      "bytes": 6058,
       "imports": [],
       "format": "cjs"
     },
@@ -3568,14 +3568,14 @@
           "original": "C:\\Projects\\arcade-machine\\my-app\\.open-next\\server-functions\\default\\.next\\server\\app\\page_client-reference-manifest.js"
         },
         {
-          "path": ".open-next/server-functions/default/.next/server/app/_not-found/page_client-reference-manifest.js",
-          "kind": "require-call",
-          "original": "C:\\Projects\\arcade-machine\\my-app\\.open-next\\server-functions\\default\\.next\\server\\app\\_not-found\\page_client-reference-manifest.js"
-        },
-        {
           "path": ".open-next/server-functions/default/.next/server/app/_global-error/page_client-reference-manifest.js",
           "kind": "require-call",
           "original": "C:\\Projects\\arcade-machine\\my-app\\.open-next\\server-functions\\default\\.next\\server\\app\\_global-error\\page_client-reference-manifest.js"
+        },
+        {
+          "path": ".open-next/server-functions/default/.next/server/app/_not-found/page_client-reference-manifest.js",
+          "kind": "require-call",
+          "original": "C:\\Projects\\arcade-machine\\my-app\\.open-next\\server-functions\\default\\.next\\server\\app\\_not-found\\page_client-reference-manifest.js"
         }
       ],
       "format": "cjs"
@@ -6732,7 +6732,7 @@
       "format": "cjs"
     },
     ".open-next/server-functions/default/open-next.config.mjs": {
-      "bytes": 11492,
+      "bytes": 11102,
       "imports": [
         {
           "path": "node:crypto",
@@ -7390,11 +7390,6 @@
         {
           "path": "path",
           "kind": "require-call",
-          "external": true
-        },
-        {
-          "path": "node:crypto",
-          "kind": "import-statement",
           "external": true
         },
         {
@@ -8137,11 +8132,11 @@
         ".open-next/server-functions/default/.next/server/app/page_client-reference-manifest.js": {
           "bytesInOutput": 6359
         },
-        ".open-next/server-functions/default/.next/server/app/_not-found/page_client-reference-manifest.js": {
-          "bytesInOutput": 5814
-        },
         ".open-next/server-functions/default/.next/server/app/_global-error/page_client-reference-manifest.js": {
           "bytesInOutput": 5714
+        },
+        ".open-next/server-functions/default/.next/server/app/_not-found/page_client-reference-manifest.js": {
+          "bytesInOutput": 5814
         },
         ".open-next/server-functions/default/node_modules/next/dist/server/load-manifest.external.js": {
           "bytesInOutput": 10158
@@ -8576,7 +8571,7 @@
           "bytesInOutput": 6507
         },
         "node_modules/sharp/lib/libvips.js": {
-          "bytesInOutput": 4161
+          "bytesInOutput": 4148
         },
         "node_modules/sharp/lib/sharp.js": {
           "bytesInOutput": 3182
@@ -8639,13 +8634,13 @@
           "bytesInOutput": 30151
         },
         ".open-next/server-functions/default/open-next.config.mjs": {
-          "bytesInOutput": 8710
+          "bytesInOutput": 8372
         },
         ".open-next/server-functions/default/index.mjs": {
           "bytesInOutput": 54135
         }
       },
-      "bytes": 3238103
+      "bytes": 3237752
     }
   }
 }

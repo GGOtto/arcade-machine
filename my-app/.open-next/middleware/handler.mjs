@@ -58,8 +58,27 @@ function isOpenNextError(e) {
     return false;
   }
 }
+var IgnorableError, FatalError;
 var init_error = __esm({
   "node_modules/@opennextjs/aws/dist/utils/error.js"() {
+    IgnorableError = class extends Error {
+      __openNextInternal = true;
+      canIgnore = true;
+      logLevel = 0;
+      constructor(message) {
+        super(message);
+        this.name = "IgnorableError";
+      }
+    };
+    FatalError = class extends Error {
+      __openNextInternal = true;
+      canIgnore = false;
+      logLevel = 2;
+      constructor(message) {
+        super(message);
+        this.name = "FatalError";
+      }
+    };
   }
 });
 
@@ -547,6 +566,78 @@ var init_cloudflare_edge = __esm({
   }
 });
 
+// node_modules/@opennextjs/aws/dist/overrides/tagCache/dummy.js
+var dummy_exports = {};
+__export(dummy_exports, {
+  default: () => dummy_default
+});
+var dummyTagCache, dummy_default;
+var init_dummy = __esm({
+  "node_modules/@opennextjs/aws/dist/overrides/tagCache/dummy.js"() {
+    dummyTagCache = {
+      name: "dummy",
+      mode: "original",
+      getByPath: async () => {
+        return [];
+      },
+      getByTag: async () => {
+        return [];
+      },
+      getLastModified: async (_, lastModified) => {
+        return lastModified ?? Date.now();
+      },
+      writeTags: async () => {
+        return;
+      }
+    };
+    dummy_default = dummyTagCache;
+  }
+});
+
+// node_modules/@opennextjs/aws/dist/overrides/queue/dummy.js
+var dummy_exports2 = {};
+__export(dummy_exports2, {
+  default: () => dummy_default2
+});
+var dummyQueue, dummy_default2;
+var init_dummy2 = __esm({
+  "node_modules/@opennextjs/aws/dist/overrides/queue/dummy.js"() {
+    init_error();
+    dummyQueue = {
+      name: "dummy",
+      send: async () => {
+        throw new FatalError("Dummy queue is not implemented");
+      }
+    };
+    dummy_default2 = dummyQueue;
+  }
+});
+
+// node_modules/@opennextjs/aws/dist/overrides/incrementalCache/dummy.js
+var dummy_exports3 = {};
+__export(dummy_exports3, {
+  default: () => dummy_default3
+});
+var dummyIncrementalCache, dummy_default3;
+var init_dummy3 = __esm({
+  "node_modules/@opennextjs/aws/dist/overrides/incrementalCache/dummy.js"() {
+    init_error();
+    dummyIncrementalCache = {
+      name: "dummy",
+      get: async () => {
+        throw new IgnorableError('"Dummy" cache does not cache anything');
+      },
+      set: async () => {
+        throw new IgnorableError('"Dummy" cache does not cache anything');
+      },
+      delete: async () => {
+        throw new IgnorableError('"Dummy" cache does not cache anything');
+      }
+    };
+    dummy_default3 = dummyIncrementalCache;
+  }
+});
+
 // node_modules/@opennextjs/aws/dist/overrides/originResolver/pattern-env.js
 var pattern_env_exports = {};
 __export(pattern_env_exports, {
@@ -613,17 +704,17 @@ var init_pattern_env = __esm({
 });
 
 // node_modules/@opennextjs/aws/dist/overrides/assetResolver/dummy.js
-var dummy_exports = {};
-__export(dummy_exports, {
-  default: () => dummy_default
+var dummy_exports4 = {};
+__export(dummy_exports4, {
+  default: () => dummy_default4
 });
-var resolver, dummy_default;
-var init_dummy = __esm({
+var resolver, dummy_default4;
+var init_dummy4 = __esm({
   "node_modules/@opennextjs/aws/dist/overrides/assetResolver/dummy.js"() {
     resolver = {
       name: "dummy"
     };
-    dummy_default = resolver;
+    dummy_default4 = resolver;
   }
 });
 
@@ -832,6 +923,27 @@ async function resolveWrapper(wrapper) {
   const m_1 = await Promise.resolve().then(() => (init_cloudflare_edge(), cloudflare_edge_exports));
   return m_1.default;
 }
+async function resolveTagCache(tagCache) {
+  if (typeof tagCache === "function") {
+    return tagCache();
+  }
+  const m_1 = await Promise.resolve().then(() => (init_dummy(), dummy_exports));
+  return m_1.default;
+}
+async function resolveQueue(queue) {
+  if (typeof queue === "function") {
+    return queue();
+  }
+  const m_1 = await Promise.resolve().then(() => (init_dummy2(), dummy_exports2));
+  return m_1.default;
+}
+async function resolveIncrementalCache(incrementalCache) {
+  if (typeof incrementalCache === "function") {
+    return incrementalCache();
+  }
+  const m_1 = await Promise.resolve().then(() => (init_dummy3(), dummy_exports3));
+  return m_1.default;
+}
 async function resolveOriginResolver(originResolver) {
   if (typeof originResolver === "function") {
     return originResolver();
@@ -843,7 +955,7 @@ async function resolveAssetResolver(assetResolver) {
   if (typeof assetResolver === "function") {
     return assetResolver();
   }
-  const m_1 = await Promise.resolve().then(() => (init_dummy(), dummy_exports));
+  const m_1 = await Promise.resolve().then(() => (init_dummy4(), dummy_exports4));
   return m_1.default;
 }
 async function resolveProxyRequest(proxyRequest) {
@@ -878,7 +990,7 @@ var NEXT_DIR = path.join(__dirname, ".next");
 var OPEN_NEXT_DIR = path.join(__dirname, ".open-next");
 debug({ NEXT_DIR, OPEN_NEXT_DIR });
 var NextConfig = { "distDir": ".next", "cacheComponents": false, "htmlLimitedBots": "[\\w-]+-Google|Google-[\\w-]+|Chrome-Lighthouse|Slurp|DuckDuckBot|baiduspider|yandex|sogou|bitlybot|tumblr|vkShare|quora link preview|redditbot|ia_archiver|Bingbot|BingPreview|applebot|facebookexternalhit|facebookcatalog|Twitterbot|LinkedInBot|Slackbot|Discordbot|WhatsApp|SkypeUriPreview|Yeti|googleweblight", "assetPrefix": "", "output": "standalone", "trailingSlash": false, "images": { "deviceSizes": [640, 750, 828, 1080, 1200, 1920, 2048, 3840], "imageSizes": [32, 48, 64, 96, 128, 256, 384], "path": "/_next/image", "loader": "default", "loaderFile": "", "domains": [], "disableStaticImages": false, "minimumCacheTTL": 14400, "formats": ["image/webp"], "maximumRedirects": 3, "dangerouslyAllowLocalIP": false, "dangerouslyAllowSVG": false, "contentSecurityPolicy": "script-src 'none'; frame-src 'none'; sandbox;", "contentDispositionType": "attachment", "localPatterns": [{ "pathname": "**", "search": "" }], "remotePatterns": [], "qualities": [75], "unoptimized": false }, "reactMaxHeadersLength": 6e3, "cacheLife": { "default": { "stale": 300, "revalidate": 900, "expire": 4294967294 }, "seconds": { "stale": 30, "revalidate": 1, "expire": 60 }, "minutes": { "stale": 300, "revalidate": 60, "expire": 3600 }, "hours": { "stale": 300, "revalidate": 3600, "expire": 86400 }, "days": { "stale": 300, "revalidate": 86400, "expire": 604800 }, "weeks": { "stale": 300, "revalidate": 604800, "expire": 2592e3 }, "max": { "stale": 300, "revalidate": 2592e3, "expire": 31536e3 } }, "basePath": "", "expireTime": 31536e3, "generateEtags": true, "poweredByHeader": true, "cacheHandlers": {}, "cacheMaxMemorySize": 52428800, "compress": true, "i18n": null, "httpAgentOptions": { "keepAlive": true }, "pageExtensions": ["tsx", "ts", "jsx", "js"], "useFileSystemPublicRoutes": true, "experimental": { "ppr": false, "staleTimes": { "dynamic": 0, "static": 300 }, "dynamicOnHover": false, "inlineCss": false, "authInterrupts": false, "fetchCacheKeyPrefix": "", "isrFlushToDisk": true, "optimizeCss": false, "nextScriptWorkers": false, "disableOptimizedLoading": false, "largePageDataBytes": 128e3, "serverComponentsHmrCache": true, "caseSensitiveRoutes": false, "validateRSCRequestHeaders": false, "useSkewCookie": false, "preloadEntriesOnStart": true, "hideLogsAfterAbort": false, "removeUncaughtErrorAndRejectionListeners": false, "imgOptConcurrency": null, "imgOptMaxInputPixels": 268402689, "imgOptSequentialRead": null, "imgOptSkipMetadata": null, "imgOptTimeoutInSeconds": 7, "proxyClientMaxBodySize": 10485760, "trustHostHeader": false, "isExperimentalCompile": false } };
-var BuildId = "R-oJYNBcgnuQQ6qr0AhGN";
+var BuildId = "Rp8qDTksEYCto0JLgsGqy";
 var RoutesManifest = { "basePath": "", "rewrites": { "beforeFiles": [], "afterFiles": [], "fallback": [] }, "redirects": [{ "source": "/:path+/", "destination": "/:path+", "internal": true, "priority": true, "statusCode": 308, "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$" }], "routes": { "static": [{ "page": "/", "regex": "^/(?:/)?$", "routeKeys": {}, "namedRegex": "^/(?:/)?$" }, { "page": "/_global-error", "regex": "^/_global\\-error(?:/)?$", "routeKeys": {}, "namedRegex": "^/_global\\-error(?:/)?$" }, { "page": "/_not-found", "regex": "^/_not\\-found(?:/)?$", "routeKeys": {}, "namedRegex": "^/_not\\-found(?:/)?$" }, { "page": "/favicon.ico", "regex": "^/favicon\\.ico(?:/)?$", "routeKeys": {}, "namedRegex": "^/favicon\\.ico(?:/)?$" }], "dynamic": [], "data": { "static": [], "dynamic": [] } }, "locales": [] };
 var ConfigHeaders = [];
 var PrerenderManifest = { "version": 4, "routes": { "/_global-error": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/_global-error", "dataRoute": "/_global-error.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/_not-found": { "initialStatus": 404, "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/_not-found", "dataRoute": "/_not-found.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/favicon.ico": { "initialHeaders": { "cache-control": "public, max-age=0, must-revalidate", "content-type": "image/x-icon", "x-next-cache-tags": "_N_T_/layout,_N_T_/favicon.ico/layout,_N_T_/favicon.ico/route,_N_T_/favicon.ico" }, "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/favicon.ico", "dataRoute": null, "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] }, "/": { "experimentalBypassFor": [{ "type": "header", "key": "next-action" }, { "type": "header", "key": "content-type", "value": "multipart/form-data;.*" }], "initialRevalidateSeconds": false, "srcRoute": "/", "dataRoute": "/index.rsc", "allowHeader": ["host", "x-matched-path", "x-prerender-revalidate", "x-prerender-revalidate-if-generated", "x-next-revalidated-tags", "x-next-revalidate-tag-token"] } }, "dynamicRoutes": {}, "notFoundRoutes": [], "preview": { "previewModeId": "f74efe322944f9a2977011acfa025bf5", "previewModeSigningKey": "76d4191899cae2916a99af170001f0b290926235ac0b660bbf57123d32053449", "previewModeEncryptionKey": "b93fb6b02d8b0acf3087640b49dcd926f0a16afbac82526a0dbc58dbc1852266" } };
@@ -2585,6 +2697,9 @@ var defaultHandler = async (internalEvent, options) => {
   const originResolver = await resolveOriginResolver(middlewareConfig?.originResolver);
   const externalRequestProxy = await resolveProxyRequest(middlewareConfig?.override?.proxyExternalRequest);
   const assetResolver = await resolveAssetResolver(middlewareConfig?.assetResolver);
+  globalThis.tagCache = await resolveTagCache(middlewareConfig?.override?.tagCache);
+  globalThis.queue = await resolveQueue(middlewareConfig?.override?.queue);
+  globalThis.incrementalCache = await resolveIncrementalCache(middlewareConfig?.override?.incrementalCache);
   const requestId = Math.random().toString(36);
   return runWithOpenNextRequestContext({
     isISRRevalidation: internalEvent.headers["x-isr"] === "1",
