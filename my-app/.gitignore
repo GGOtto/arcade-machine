@@ -17,10 +17,10 @@
 # next.js
 /.next/
 /out/
-/.open-next/
 
 # production
 /build
+/.open-next
 
 # misc
 .DS_Store
