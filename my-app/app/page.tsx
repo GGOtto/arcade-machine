@@ -1,4 +1,4 @@
-import GameContainer from "./components/GameContainer/GameContainer";
+import GameContainer from "./ui/GameContainer/GameContainer";
 import "./page.css";
 
 export default function Home() {
