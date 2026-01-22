@@ -15,9 +15,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "The Arcade Machine",
   description: "Some simple games and puzzles",
-  icons: {
-    icon: "./public/icon.png"
-  }
 };
 
 export default function RootLayout({
@@ -30,6 +27,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <h1 className="title">The Arcade Machine</h1>
         {children}
       </body>
     </html>

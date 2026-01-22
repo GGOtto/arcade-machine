@@ -19,6 +19,13 @@
   }
 }
 
+.title {
+    text-align: center;
+    background-color: green;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
