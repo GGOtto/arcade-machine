@@ -6,7 +6,7 @@ export default function Home() {
     <div className="main-page-container">
       <div className="main-page">
         <h1 className="title">The Arcade Machine</h1>
-        <GameContainer name="Yahtzee"/>
+        <GameContainer name="Yahtzee" content="Hello World"/>
       </div>
     </div>
   );

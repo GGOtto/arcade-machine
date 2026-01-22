@@ -5,6 +5,16 @@
     cursor: pointer;
 }
 
-.game-container:hover {
+.game-title:hover {
     background-color: lightblue;
+    user-select: none;
+}
+
+.dropdown-closed {
+    display: none;
+}
+
+.dropdown-open {
+    display: block;
+    background-color: white;
 }
