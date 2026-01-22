@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div className="main-page-container">
       <div className="main-page">
-        <a href="/games">Games</a>
+        Home
       </div>
     </div>
   );
