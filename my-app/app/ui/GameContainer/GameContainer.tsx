@@ -5,10 +5,11 @@ import {useState} from "react";
 interface GameContainerProps {
     name: string;
     content?: string;
+    url?: string;
 }
 
 export default function GameContainer(props: GameContainerProps) {
-    const {name, content} = props;
+    const {name, content, url} = props;
 
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -18,7 +19,12 @@ export default function GameContainer(props: GameContainerProps) {
                 {name}
             </div>
             <div className={`dropdown-${isOpen ? 'open' : 'closed'}`}>
-                {content ? content : "..."}
+                {content ? content : ""}
+                {url && (
+                    <a className="game-link" href={url}>
+                        Play
+                    </a>
+                )}
             </div>
         </div>
     )

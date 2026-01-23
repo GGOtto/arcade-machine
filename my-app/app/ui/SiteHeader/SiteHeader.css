@@ -4,8 +4,15 @@
     padding: 1rem 2rem;
     font-size: 1.5rem;
     display: flex;
-    width: 100%;
     justify-content: space-between;
+}
+
+.site-title-slim {
+    width: 80%;
+}
+
+.site-title-normal {
+    width: 100%;
 }
 
 .title-text {
@@ -13,8 +20,11 @@
     order: 0;
 }
 
+.menu-button {
+    align-self: center;
+}
+
 .menu-icon {
-    order: 1;
     font-size: 1.3rem;
     float: right;
     align-self: center;
