@@ -13,7 +13,7 @@ export default function SiteHeader() {
         <div className="site-header">
             <div className={`site-title site-title-${isSideMenuOpen ? "slim" : "normal"}`}>
                 <h1 className="title-text">
-                    Test Header - Hello World
+                    The Arcade Machine
                 </h1>
                 <div className="menu-button" onClick={() => setSideMenuOpen(!isSideMenuOpen)}>
                     <FaBars className="menu-icon"/>
