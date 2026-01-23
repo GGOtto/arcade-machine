@@ -1,0 +1,26 @@
+.site-title {
+    text-align: center;
+    background-color: green;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.title-text {
+    text-align: center;
+    order: 0;
+}
+
+.menu-icon {
+    order: 1;
+    font-size: 1.3rem;
+    float: right;
+    align-self: center;
+    cursor: pointer;
+}
+
+.menu-icon:hover {
+    color: lightgreen;
+}

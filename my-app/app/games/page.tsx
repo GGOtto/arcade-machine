@@ -1,7 +1,9 @@
+import "./page.css";
+
 export default function Page() {
     return (
-        <div>
-            Games
-        </div>
+        <main className="games">
+            Page 2
+        </main>
     );
 }

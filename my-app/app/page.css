@@ -1,5 +1,6 @@
 .main-page {
-    background-color: black;
+    background-color: purple;
+    min-height: 20rem;
 }
 
 body {

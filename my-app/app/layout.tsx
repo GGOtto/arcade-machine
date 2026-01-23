@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import NavBar from "./ui/NavBar/NavBar";
+import SiteHeader from "./ui/SiteHeader/SiteHeader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,8 +28,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <h1 className="title">The Arcade Machine</h1>
-        <NavBar tabs={["Home", "Games", "Puzzles"]} urls={["/", "/games","/puzzles"]}/>
+        <SiteHeader/>
         {children}
       </body>
     </html>
