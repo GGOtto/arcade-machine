@@ -1,4 +1,10 @@
 .games {
     background-color: white;
     min-height: 20rem;
+    display: grid;
+    height: 100%;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    align-content: start;
+    align-items: start;
 }

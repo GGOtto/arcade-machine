@@ -11,6 +11,9 @@
 .title-text {
     text-align: center;
     order: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .menu-button {

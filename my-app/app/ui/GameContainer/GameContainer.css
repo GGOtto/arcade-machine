@@ -3,11 +3,15 @@
     font-weight: 600;
     padding: 0.5rem 1rem;
     cursor: pointer;
+    background-color: lightgrey;
+    height: 6rem;
+    margin: 1px;
+    display: inline-block;
 }
 
-.game-title:hover {
-    background-color: lightblue;
-    user-select: none;
+.container-header {
+    display: flex;
+    gap: 0.2rem;
 }
 
 .dropdown-closed {
@@ -17,4 +21,12 @@
 .dropdown-open {
     display: block;
     background-color: white;
+}
+
+.game-link, .info-button {
+    align-self: center;
+    font-size: 0.9rem;
+}
+.game-link:hover {
+    color: #333;
 }

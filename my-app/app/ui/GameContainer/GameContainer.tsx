@@ -1,6 +1,7 @@
 "use client"; 
 import "./GameContainer.css";
 import {useState} from "react";
+import {FaPlay,FaCircleInfo} from "react-icons/fa6";
 
 interface GameContainerProps {
     name: string;
@@ -15,16 +16,21 @@ export default function GameContainer(props: GameContainerProps) {
 
     return (
         <div className="game-container">
-            <div className="game-title" onClick={() => {setIsOpen(!isOpen)}}>
-                {name}
+            <div className="container-header">
+                <div className="game-title">
+                    {name}
+                </div>
+                <div className="info-button" onClick={() => {setIsOpen(!isOpen)}}>
+                    <FaCircleInfo/>
+                </div>
+                {url && (
+                <a className="game-link" href={url}>
+                    <FaPlay/>
+                </a>
+            )}
             </div>
             <div className={`dropdown-${isOpen ? 'open' : 'closed'}`}>
-                {content ? content : ""}
-                {url && (
-                    <a className="game-link" href={url}>
-                        Play
-                    </a>
-                )}
+                {content ? content : "..."}
             </div>
         </div>
     )
