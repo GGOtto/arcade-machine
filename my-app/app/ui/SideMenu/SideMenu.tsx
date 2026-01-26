@@ -10,6 +10,7 @@ export default function SideMenu(props: SideMenuProps) {
 
     return (
         <div className={`side-menu-${isSideMenuOpen ? "open" : "closed"}`}>
+            Hello
         </div>
     )
 }

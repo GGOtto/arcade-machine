@@ -2,7 +2,7 @@
 
 import "./SiteHeader.css";
 import NavBar from "../NavBar/NavBar";
-import {FaBars,FaXmark} from "react-icons/fa6";
+import {FaBars} from "react-icons/fa6";
 import {useState} from "react";
 import SideMenu from "../SideMenu/SideMenu";
 
@@ -11,7 +11,7 @@ export default function SiteHeader() {
 
     return (
         <div className="site-header">
-            <div className={`site-title site-title-${isSideMenuOpen ? "slim" : "normal"}`}>
+            <div className="site-title">
                 <h1 className="title-text">
                     The Arcade Machine
                 </h1>

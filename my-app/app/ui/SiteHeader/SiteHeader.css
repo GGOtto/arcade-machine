@@ -5,13 +5,6 @@
     font-size: 1.5rem;
     display: flex;
     justify-content: space-between;
-}
-
-.site-title-slim {
-    width: 80%;
-}
-
-.site-title-normal {
     width: 100%;
 }
 
