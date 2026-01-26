@@ -1,4 +1,5 @@
 import "./SideMenu.css";
+import {FaXmark} from "react-icons/fa6";
 
 interface SideMenuProps {
     isSideMenuOpen: boolean;
@@ -10,7 +11,9 @@ export default function SideMenu(props: SideMenuProps) {
 
     return (
         <div className={`side-menu-${isSideMenuOpen ? "open" : "closed"}`}>
-            Hello
+            <div className="menu-x-button" onClick={() => setSideMenuOpen(false)}>
+                <FaXmark/>
+            </div>
         </div>
-    )
+    );
 }
