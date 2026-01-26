@@ -29,7 +29,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SiteHeader/>
-        {children}
+        <div className="viewport">
+          {children}
+        </div>
       </body>
     </html>
   );
