@@ -5,7 +5,7 @@
 .side-menu-open {
     display: block;
     height: 100%;
-    width: 35rem;
+    width: 25rem;
     max-width: 100%;
     background-color: blue;
     position: fixed;
