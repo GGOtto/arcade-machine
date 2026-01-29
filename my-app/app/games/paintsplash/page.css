@@ -1,0 +1,3 @@
+.viewport:has(.game-page) {
+    overflow: hidden;
+}

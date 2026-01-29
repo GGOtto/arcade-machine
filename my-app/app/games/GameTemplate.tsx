@@ -230,7 +230,7 @@ export default function PhaserAspectRatioTemplate() {
       // ✅ Aspect ratio lock (your current approach)
       scale: {
         mode: Phaser.Scale.FIT,
-        autoCenter: Phaser.Scale.NO_CENTER,
+        autoCenter: Phaser.Scale.CENTER_BOTH, // centers the canvas in the host div
       },
 
       // ✅ If you add physics later, enable it here
@@ -253,8 +253,8 @@ export default function PhaserAspectRatioTemplate() {
         height: "100vh",
         overflow: "hidden",
         display: "flex",
-        justifyContent: "left",
-        alignItems: "flex-start",
+        // The canvas will be centered by Phaser (CENTER_BOTH),
+        // but keeping a simple container is still nice.
       }}
     />
   );

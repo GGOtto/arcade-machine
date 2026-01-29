@@ -20,7 +20,7 @@ export default function GameContainer(props: GameContainerProps) {
                 </div>
             </div>
             <div className="container-content">
-                {content ? content : "..."}
+                {content ? content : ""}
             </div>
         </a>
     )
